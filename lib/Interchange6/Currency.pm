@@ -4,7 +4,13 @@ package Interchange6::Currency;
 
 Interchange6::Currency - Currency objects for Interchange 6
 
+=head1 VERSION
+
+0.100
+
 =cut
+
+our $VERSION = '0.100';
 
 use Moo;
 extends 'CLDR::Number::Format::Currency';
