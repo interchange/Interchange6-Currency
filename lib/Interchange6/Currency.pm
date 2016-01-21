@@ -36,11 +36,18 @@ use overload
 
 =head1 DESCRIPTION
 
+Currency objects for Interchange6 Open Source eCommerce with Unicode
+CLDR localization and rate conversion.
+
 Extends L<CLDR::Number::Format::Currency> with accurate calculation functions
 using L<Math::BigFloat>.
 
 Many useful standard operators are overloaded and return currency objects
 if appropriate.
+
+Although this class was written to satisfy the specific requirements of
+Interchange6 it is suitable for use as a standalone module. See L</SEE ALSO>
+for other currency modules.
 
 =head1 ATTRIBUTES
 
@@ -369,5 +376,53 @@ sub cmp {
         return "$self" cmp "$arg";
     }
 }
+
+=head2 SEE ALSO
+
+Other modules which perform currency maths:
+
+=over
+
+=item * L<Math::Currency>
+
+=item * L<Data::Currency>
+
+=back
+
+Other Interchange6 eCommerce modules:
+
+=over
+
+=item * L<Interchange6>
+
+=item * L<Interchange6::Schema>
+
+=item * L<Dancer::Plugin::Interchange6>
+
+=back
+
+=head1 AUTHORS
+
+Peter Mottram (SysPete), C<peter@sysnix.com>
+
+=head1 ACKNOWLEDGEMENTS
+
+Shutterstock, Inc for the excellent L<CLDR::Number> and all of the authors
+of L<Math::BigFLoat> and L<Moo>.
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright 2015-2016 Peter Mottram (SysPete).
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of either: the GNU General Public License as published
+by the Free Software Foundation; or the Artistic License.
+
+See http://dev.perl.org/licenses/ for more information.
+
+Unicode is a registered trademark of Unicode, Inc., in the United States
+and other countries.
+
+=cut
 
 1;
