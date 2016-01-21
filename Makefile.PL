@@ -15,6 +15,7 @@ WriteMakefile(
         'Test::More'      => '0.94',    # subtest
         'Test::Exception' => 0,
         'Test::Warnings'  => 0,
+        'Test::RequiresInternet' => '0.05',
     },
     PREREQ_PM => {
         'Carp'                           => 0,

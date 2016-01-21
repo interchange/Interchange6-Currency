@@ -6,11 +6,13 @@ Interchange6::Currency - Currency objects for Interchange 6
 
 =head1 VERSION
 
-0.100
+0.101
+
+=for stopwords CLDR eCommerce Mottram Shutterstock SysPete
 
 =cut
 
-our $VERSION = '0.100';
+our $VERSION = '0.101';
 
 use Moo;
 extends 'CLDR::Number::Format::Currency';
@@ -95,6 +97,14 @@ signature:
  
       return $converted_price;
   };
+
+In addition this module supports the following converters:
+
+=over
+
+=item * L<Finance::Currency::Convert::WebserviceX>
+
+=back
 
 =cut
 
@@ -191,9 +201,24 @@ sub convert {
         $self->value->precision(undef);
 
         # currency code has changed so convert via converter_class
-        my $new_value =
-          $self->converter->convert( $self->value, $self->currency_code,
-            $new_code );
+
+        my $new_value;
+
+        if ( $self->converter_class eq 'Finance::Currency::Convert::XE' ) {
+
+            # XE is special
+            $new_value = $self->converter->convert(
+                value  => $self->value,
+                source => $self->currency_code,
+                target => $new_code
+            ) || croak "convert failed: " . $self->converter->error . "\n";
+        }
+        else {
+            # other
+            $new_value =
+              $self->converter->convert( $self->value, $self->currency_code,
+                $new_code );
+        }
 
         croak "convert failed" unless defined $new_value;
 
